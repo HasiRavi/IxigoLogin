@@ -3,7 +3,7 @@
   <groupId>POM</groupId>
   <artifactId>Ixigo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-</project>
+
 <build>
         <plugins>
             <plugin>
@@ -132,3 +132,4 @@
 <version>0.8</version>
 </dependency>
 </dependencies>
+</project>
