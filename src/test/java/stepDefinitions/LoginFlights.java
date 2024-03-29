@@ -3,9 +3,14 @@ package stepDefinitions;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -61,15 +66,29 @@ WebDriver driver=new ChromeDriver();
 	}
 
 	@When("I enter From as {string}")
-	public void i_enter_from_as(String string) {
-		WebElement fRom= driver.findElement(By.xpath("//input[contains(@class,'outline-none w-full')]"));
-		fRom.sendKeys(string);
+	public void i_enter_from_as(String src) throws InterruptedException {
+		
+		WebElement fRom=driver.findElement(By.xpath("//div[@class='flex items-center ']"));
+		
+		fRom.click();
+		System.out.println("fRom clicked");
+		WebElement fromDrop = driver.findElement(By.xpath("//span[text()='New Delhi']"));
+		fromDrop.click();
+		
 	}
 
 	@When("I enter To as {string}")
-	public void i_enter_to_as(String string) {
-		WebElement to= driver.findElement(By.xpath("//label[text()='To']/following::input"));
-		to.sendKeys(string);
+	public void i_enter_to_as(String dest) {
+		WebElement to = driver.findElement(By
+						.xpath("(//div[contains(@class,'flex-1 h-full')])[2]"));
+		to.click();
+		
+		WebElement toField = driver.findElement(By.xpath("/html/body/main/div[2]/div[1]/div[3]/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/input"));
+		Actions action = new Actions(driver);
+		action.sendKeys(toField,"MAA").build().perform();
+		WebElement toDrop = driver.findElement(By.xpath("(//span[text()='Chennai'])[2]"));
+		//to.sendKeys(dest);
+		toDrop.click();
 	}
 
 	@When("I click on search button")
